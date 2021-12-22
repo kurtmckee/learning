@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/kurtmckee/learning/json-schema/01-amazon-state-language.schema.json",
+  "type": "object",
+  "properties": {
+    "Comment": {
+      "type": "string"
+    },
+    "StartAt": {
+      "type": "string"
+    },
+    "Version": {
+      "type": "string",
+      "default": "1.0"
+    },
+    "TimeoutSeconds": {
+      "type": "integer"
+    },
+    "States": {
+      "type": "object",
+      "patternProperties": {
+        "^.{1,128}$": {
+          "Type": {
+            "type": "string",
+            "enum": [
+              "Task",
+              "Parallel",
+              "Map",
+              "Pass",
+              "Wait",
+              "Choice",
+              "Succeed",
+              "Fail"
+            ]
+          },
+          "Comment": {
+            "type": "string"
+          },
+          "Resource": {
+            "type": "string"
+          },
+          "End": {
+            "type": "bool"
+          },
+          "required": [
+            "Type"
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": true,
+  "required": ["StartAt"]
+}
