@@ -20,7 +20,6 @@ def forbid_duplicate_keys(pairs: List[Tuple[str, Any]]) -> Dict[str, Any]:
     """Parse JSON objects but forbid duplicate keys.
 
     By default, the `json` module quietly swallows duplicate object keys.
-    This can make it more difficult to
     This function prevents this from happening.
 
     :raises KeyError:
