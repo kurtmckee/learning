@@ -11,7 +11,7 @@ from e01_association_proxy import Base, Item
 # The database URI may be specified in the DB_URI environment variable.
 # For example:
 #
-# DB_URI="postgresql://{USER}:{PASS}@{HOST}/{NAME}" python test_e01.py
+# DB_URI="postgresql://{USER}:{PASS}@{HOST}/{NAME}" python e01_test.py
 #
 database_uri = os.getenv("DB_UI", "sqlite:///:memory:")
 engine = create_engine(database_uri)
