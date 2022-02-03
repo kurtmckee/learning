@@ -1,4 +1,4 @@
-# See e01.md for goals and lessons learned.
+# See README.md for goals and lessons learned.
 
 from typing import List
 
