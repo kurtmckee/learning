@@ -13,7 +13,7 @@ from association_proxy import Base, Item
 #
 # DB_URI="postgresql://{USER}:{PASS}@{HOST}/{NAME}" python test.py
 #
-database_uri = os.getenv("DB_UI", "sqlite:///:memory:")
+database_uri = os.getenv("DB_URI", "sqlite:///:memory:")
 engine = create_engine(database_uri)
 session = Session(engine)
 
