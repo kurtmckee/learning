@@ -43,21 +43,33 @@
 
 ## Performance
 
-On my machine, I saw the following output for Postgres, and similar numbers for sqlite:
+On my machine, I saw the following output for Postgres with 100,000 items with tags:
+
+```text
+UNOPTIMIZED        : 100001 queries in 26.67 seconds
+JOIN               :      1 queries in  3.57 seconds
+JOIN ALL           :      1 queries in  1.44 seconds
+SELECT IN          :    201 queries in  9.60 seconds
+SELECT IN YIELD PER:    201 queries in  1.75 seconds
+SELECT IN ALL      :    201 queries in  2.61 seconds
+```
+
+
+I got these numbers for sqlite with 100,000 items with tags:
 
 ```
-UNOPTIMIZED        : 100001 queries in 23.62 seconds
-JOIN               :      1 queries in  1.06 seconds
-JOIN ALL           :      1 queries in  2.19 seconds
-SELECT IN          :    201 queries in  1.41 seconds
-SELECT IN YIELD PER:    201 queries in  4.42 seconds
-SELECT IN ALL      :    201 queries in  4.50 seconds
+UNOPTIMIZED        : 100001 queries in 20.08 seconds
+JOIN               :      1 queries in  1.33 seconds
+JOIN ALL           :      1 queries in  9.19 seconds
+SELECT IN          :    201 queries in  1.76 seconds
+SELECT IN YIELD PER:    201 queries in  4.41 seconds
+SELECT IN ALL      :    201 queries in  5.31 seconds
 ```
 
 
 ## Future learning
 
-* I cannot account for why `SELECT IN` is so much faster than `SELECT IN YIELD PER`.
+* I cannot account for why sqlite and Postgres have flipped performance characteristics.
 
 
 [association proxies]: https://docs.sqlalchemy.org/en/14/orm/extensions/associationproxy.html

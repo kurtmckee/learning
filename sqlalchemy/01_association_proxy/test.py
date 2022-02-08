@@ -31,9 +31,9 @@ def setup():
         if tag_name not in tag_names:
             tag_names.append(tag_name)
 
-    # Create 100,000 items with 3 tags each.
+    # Create 100,000 items with up to 3 tags each.
     for _ in range(100_000):
-        session.add(Item(tags=random.sample(tag_names, random.randint(0, 3))))
+        session.add(Item(tags=random.sample(tag_names, random.randint(1, 3))))
 
     print(f"SETUP: Objects generated after {time.time() - start_time_:.2f} seconds")
 
@@ -55,32 +55,32 @@ def listener(*args, **kwargs):
 
 def test_unoptimized():
     for item in session.query(Item):
-        item.tags
+        assert len(item.tags)
 
 
 def test_select_in():
     for item in session.query(Item).options(selectinload(Item._tags)):
-        item.tags
+        assert len(item.tags)
 
 
 def test_select_in_yield_per():
     for item in session.query(Item).options(selectinload(Item._tags)).yield_per(1000):
-        item.tags
+        assert len(item.tags)
 
 
 def test_select_in_all():
     for item in session.query(Item).options(selectinload(Item._tags)).all():
-        item.tags
+        assert len(item.tags)
 
 
 def test_join():
     for item in session.query(Item).options(joinedload(Item._tags)):
-        item.tags
+        assert len(item.tags)
 
 
 def test_join_all():
     for item in session.query(Item).options(joinedload(Item._tags)).all():
-        item.tags
+        assert len(item.tags)
 
 
 tests = (
