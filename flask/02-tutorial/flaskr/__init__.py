@@ -38,4 +38,9 @@ def create_app(test_config: t.Optional[t.Dict[str, t.Any]] = None):
 
     db.init_app(app)
 
+    # Again, why import here instead of at the top of this file?
+    from . import auth
+
+    app.register_blueprint(auth.bp)
+
     return app
