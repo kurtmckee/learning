@@ -39,8 +39,10 @@ def create_app(test_config: t.Optional[t.Dict[str, t.Any]] = None):
     db.init_app(app)
 
     # Again, why import here instead of at the top of this file?
-    from . import auth
+    from . import auth, blog
 
     app.register_blueprint(auth.bp)
+    app.register_blueprint(blog.bp)
+    app.add_url_rule("/", endpoint="index")
 
     return app
