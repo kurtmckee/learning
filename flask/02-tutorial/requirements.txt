@@ -1,0 +1,7 @@
+# Necessary for functionality
+flask==2.0.3
+
+# Code linting and formatting
+black
+isort
+mypy
