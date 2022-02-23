@@ -33,4 +33,9 @@ def create_app(test_config: t.Optional[t.Dict[str, t.Any]] = None):
     def hello():
         return "Hello world!"
 
+    # Why import here instead of at the top of this file?
+    from . import db
+
+    db.init_app(app)
+
     return app
